@@ -1,9 +1,19 @@
 import { RiLogoutCircleLine } from 'react-icons/ri';
+import useLogout from '../../hooks/useLogout';
 
 const LogoutBtn = () => {
+  const { loading, logout } = useLogout();
+
   return (
     <div className="mt-auto">
-      <RiLogoutCircleLine className="w-6 h-6 text-white cursor-pointer" />
+      {!loading ? (
+        <RiLogoutCircleLine
+          className="w-6 h-6 text-white cursor-pointer"
+          onClick={logout}
+        />
+      ) : (
+        <span className="loading loading-spinner"></span>
+      )}
     </div>
   );
 };
